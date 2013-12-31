@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Products
+    {% endblock %}
+{% block content %}
+{% for query in queryset %}
+<div class='row-fluid'>
+    <div class='span3'>
+            {% if query.image1 %}
+    <img src='/media/{{ query.image1 }}' style='max-width: 200px; max-height: 200px;'>
+   {% endif %}
+        <h3>{% if query.slug %}<a href='{{ query.slug }}'>{% endif %}{{ query }}</a></h3>
+        <p>{% if query.description %}
+    {{ query.description|truncatewords:12 }}
+    {% else %}
+        <p>No Description Available</p>
+    {% endif %}</p>
+        
+       <p>${{ query.price }} <a class='btn' href='{{ query.slug }}'>View</a></p> 
+    </div>
+ {% endfor %}   
+    </div>
+    
+
+{% endblock %}

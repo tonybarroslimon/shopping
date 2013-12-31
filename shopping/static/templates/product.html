@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ product }}
+{% endblock %}
+{% block content %}
+<table class='table'>
+<thead><th colspan='2'><h1>{{ product }}
+<div class="fb-like" data-href="http://weexplor.com{{ request.get_full_path }}" data-send="false" data-width="150" data-show-faces="false"></div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this product." data-via="tonybarroslimon" data-hashtags="eCommerce">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<div class="g-plusone" data-size="small"></div>
+</h1></th></thead>
+<tr>
+
+<td>{% if product.image1 %}
+<img src='/media/{{ product.image1 }}' style='max-width: 350px;float:left; margin-right:20px'>
+{% endif %}{{ product.description }} ${{ product.price }} with a sku of {{ product.sku }} and {{ product.inventory }} in stock<br>
+
+<tr><td>
+<form action='/cart/add' method='post' class='form'> {% csrf_token %}
+    <input type='hidden' name='product_id' value='{{ product.id }}'/> 
+    {{ form.as_p }}
+<input type='submit' class='btn' value='Submit'/>
+</form>
+</td></tr>
+
+</tr>
+
+</table>
+{% endblock %}

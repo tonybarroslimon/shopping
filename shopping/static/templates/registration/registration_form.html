@@ -1,0 +1,49 @@
+{% extends "registration/registration_base.html" %}
+{% block title %}Register for an account {% endblock %}
+{% block jquery %}
+$('#submitbtn')
+.click(function () {
+var btn = $(this)
+btn.button('loading')
+setTimeout(function () {
+btn.button('reset')
+}, 3000)
+});
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+function validate(form) {
+// Checking if at least one period button is selected. Or not.
+if(!document.signup.agree.checked){alert("Please check the terms and
+conditions");
+return false; }
+return true;
+}
+</script>
+{% endblock %}
+{% block content %}
+    <div class='row-fluid'>
+<h2>The best teams help everyone improve.</h2>
+<div class="span7 pull-left;" style="margin-left: 0;">
+<img class="pull-left" src="http://vibrationofawesome.com/wp-content/uploads/2013/02/i_awesome6.jpg">
+</div>
+<div class="inputform span5 pull-right">
+<table>
+<thead>
+<th colspan='2' style="text-align:left"><h3>Join Us.</h3></th>
+</thead>
+<form method='post' action='' form name="signup" onsubmit='return
+validate(this)'>{% csrf_token %}
+{% for field in form %}
+<tr><td>{{field.label|capfirst}} </td><td> {{field}}</td></tr>
+{% endfor %}
+<tr><td></td><td><input type="checkbox" name="agree" value='yes'> I agree to
+the <a href="/terms/"> Terms and Conditions</a></td></tr>
+<tr><td><p><br/></p></td><td><p></p></td></tr>
+<tr><td></td><td><button type="submit" id='submitbtn' data-loadingtext="
+Activation Email Pending..." class='btn btn-info'>Join</button></td>
+</form>
+</table>
+</div>
+    </div>
+{% endblock %}
