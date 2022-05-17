@@ -8,21 +8,12 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-EMAIL_HOST = 'smtp.google.com'
-EMAIL_HOST_USER = 'tony.landmark@gmail.com'
-EMAIL_HOST_PASSWORD = 's!0bha17b7'
-EMAIL_USE_TLS = True
-
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'shopping',                      # Or path to database file if using sqlite3.
-        'USER': 'justin',                      # Not used with sqlite3.
-        'PASSWORD': 'your_password',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/db.sqlite3',
     }
 }
 
@@ -30,7 +21,7 @@ DATABASES = {
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -109,14 +100,14 @@ ROOT_URLCONF = 'shopping.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'shopping.wsgi.application'
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [
     os.path.join(os.path.dirname(__file__), 'static/templates')
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-)
+]
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -128,12 +119,12 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'django.contrib.flatpages',
-    'registration',
+    # 'registration',
     'products',
     'contact',
     'cart',
     'customers',
-)
+]
 #Account Registration and User Information
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
