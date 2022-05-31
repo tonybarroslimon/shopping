@@ -1,6 +1,6 @@
 # Create your views here.
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Cart, CartItem
@@ -33,10 +33,10 @@ def add_to_cart(request):
         product_obj = Products.objects.get(id=product_id)
         cart_item, created = CartItem.objects.get_or_create(cart=cart_obj, product=product_obj)
         if created:
-            print 'Created!'
+            print('Created!')
         cart_item.quantity = quantity
         cart_item.save()
-        print cart_item
+        print(cart_item)
         request.session['total_items'] = len(CartItem.objects.filter(cart=cart_obj))
     return HttpResponseRedirect('/products/')
 
@@ -56,7 +56,7 @@ def view(request):
     if cart_exists and cart_exists.active:
         cart = CartItem.objects.filter(cart=cart_exists)
         
-    return render_to_response('cart/cart.html', locals(), context_instance=RequestContext(request))
+    return render('cart/cart.html', locals(), context_instance=RequestContext(request))
 
 def delete(request):
     try:

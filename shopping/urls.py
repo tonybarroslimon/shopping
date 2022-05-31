@@ -1,5 +1,5 @@
 import os
-import products.views
+#import products.views
 import cart.views
 import checkout.views
 import contact.views
